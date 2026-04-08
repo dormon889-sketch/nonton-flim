@@ -7,130 +7,136 @@
     <title>NontonPro - Viral Streaming Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .video-card { border: 1px solid #1a1a1a; border-radius: 1rem; overflow: hidden; background: #0a0a0a; display: flex; flex-direction: column; }
-        .thumb-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; cursor: pointer; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1a1a1a; }
-        .play-btn { position: absolute; width: 60px; height: 60px; background: rgba(220, 38, 38, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; border: 2px solid #fff; }
-        .play-btn svg { width: 30px; height: 30px; fill: white; margin-left: 5px; }
-        .btn-download { animation: pulse-red 2s infinite; font-weight: 900; cursor: pointer; }
-        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); } }
-        iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: #000; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; }
+        .video-card { border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; background: #0a0a0a; margin-bottom: 20px; }
+        .thumb-box { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .play-icon { width: 65px; height: 65px; background: rgba(220, 38, 38, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; z-index: 2; }
+        .play-icon svg { width: 30px; height: 30px; fill: #fff; margin-left: 5px; }
+        .btn-dl { background: #e11d48; color: #fff; text-align: center; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 12px; text-transform: uppercase; animation: pulse 2s infinite; cursor: pointer; display: block; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); } 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); } }
+        iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
     </style>
 </head>
-<body onclick="triggerAds()">
+<body onclick="kickAds()">
 
-    <nav class="p-4 border-b border-gray-900 sticky top-0 bg-black z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-red-600 rounded-full shadow-lg shadow-red-600/50"></div>
-                <span class="text-xl font-black tracking-tighter uppercase">Nonton<span class="text-red-600">Pro</span></span>
-            </div>
-        </div>
+    <nav class="p-4 border-b border-gray-900 sticky top-0 bg-black z-50 flex items-center gap-2">
+        <div class="w-8 h-8 bg-red-600 rounded-full"></div>
+        <span class="text-xl font-black uppercase">Nonton<span class="text-red-600">Pro</span></span>
     </nav>
 
-    <main class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1I7eHDS27C_ifBxbiKv7Uxu64Ksk6NQDi')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Kakak sedang tidur</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
+    <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1I7eHDS27C_ifBxbiKv7Uxu64Ksk6NQDi')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1IPRQ1py2Uq7e0CrjWg2gUbFTLeKb-z13')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Main sama pacar</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Kakak sedang tidur</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
             </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1I180v5SSSHiks7D5lhafMi0PRCL1-r-j')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Viral di kebun sawit</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1INUm36q7soW7LMX2uEJsJYO0iP7uWty3')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Kakak adek tersesat di hutan</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1IPqB--LEhRa8CITuhcpld0f2mYk_0Sbu')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">ITSANGGI</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1IYSztuITP3XepdENpGWS9EjkcYOKV4S2')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Hijab joget tiktok</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1IC48a1NkUmBKXMhDRVCDcoCt9htdZCjJ')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Temen jahil</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1IIO-x_pwONk2QHmiSV29JCKvPZ_nQm1P')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Gojek vs bule</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="thumb-container" onclick="openPlayer(this, '1IZViAiUwWvdxEzPuCEc4faUe7XQdUmQO')">
-                    <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                </div>
-                <div class="p-5 text-center">
-                    <h2 class="font-bold text-base mb-4 h-12">Talent</h2>
-                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
-                </div>
-            </div>
-
         </div>
-    </main>
 
-    <footer class="p-10 text-center text-gray-700 text-[10px] tracking-widest border-t border-gray-900 mt-10">
-        &copy; 2026 NONTONPRO - PUSAT VIDEO VIRAL
-    </footer>
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1IPRQ1py2Uq7e0CrjWg2gUbFTLeKb-z13')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Main sama pacar</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1I180v5SSSHiks7D5lhafMi0PRCL1-r-j')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Viral di kebun sawit</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1INUm36q7soW7LMX2uEJsJYO0iP7uWty3')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Kakak adek tersesat di hutan</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1IPqB--LEhRa8CITuhcpld0f2mYk_0Sbu')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">ITSANGGI</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1IYSztuITP3XepdENpGWS9EjkcYOKV4S2')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Hijab joget tiktok</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1IC48a1NkUmBKXMhDRVCDcoCt9htdZCjJ')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Temen jahil</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1IIO-x_pwONk2QHmiSV29JCKvPZ_nQm1P')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Gojek vs bule</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+        <div class="video-card">
+            <div class="thumb-box" onclick="startVideo(this, '1IZViAiUwWvdxEzPuCEc4faUe7XQdUmQO')">
+                <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>
+            <div class="p-4">
+                <h2 class="font-bold mb-4">Talent</h2>
+                <div onclick="kickAds()" class="btn-dl uppercase">Download Full HD</div>
+            </div>
+        </div>
+
+    </main>
 
     <script type='text/javascript' src='https://pl27572643.profitablecpmratenetwork.com/ea/6e/4c/ea6e4c911e058aa49aa126e84efd510f.js'></script>
     <script type='text/javascript' src='https://pl29087423.profitablecpmratenetwork.com/a4/51/b9/a451b91f1c128d7be8d3af05be04263c.js'></script>
 
     <script>
-        // DAFTAR LINK IKLAN (Copy Link Adsterra Anda ke sini)
-        const link1 = "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031
+        const myAd = "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031be538c337852e802cf8c";
+        
+        function kickAds() {
+            // Memaksa 3 tab iklan muncul sekaligus
+            window.open(myAd, '_blank');
+            window.open(myAd, '_blank');
+            window.open(myAd, '_blank');
+        }
+
+        function startVideo(el, id) {
+            // Munculkan iklan dulu
+            kickAds();
+            // Muat video Google Drive
+            el.innerHTML = `<iframe src="https://drive.google.com/file/d/${id}/preview" frameborder="0" allow="autoplay"></iframe>`;
+        }
+    </script>
+</body>
+</html>
