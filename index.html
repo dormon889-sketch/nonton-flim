@@ -7,18 +7,17 @@
     <title>NontonPro - Viral Streaming Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .video-card { border: 1px solid #1a1a1a; border-radius: 1rem; overflow: hidden; background: #0a0a0a; display: flex; flex-direction: column; }
-        .thumb-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .play-btn { position: absolute; width: 60px; height: 60px; background: rgba(220, 38, 38, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5; border: 2px solid #fff; transition: 0.3s; }
-        .play-btn:hover { transform: scale(1.1); background: #ff0000; }
+        .thumb-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #111; cursor: pointer; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #1a1a1a; }
+        .play-btn { position: absolute; width: 60px; height: 60px; background: rgba(220, 38, 38, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; border: 2px solid #fff; }
         .play-btn svg { width: 30px; height: 30px; fill: white; margin-left: 5px; }
-        .btn-download { animation: pulse-red 2s infinite; font-weight: 900; }
+        .btn-download { animation: pulse-red 2s infinite; font-weight: 900; cursor: pointer; }
         @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); } }
-        iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+        iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: #000; }
     </style>
 </head>
-<body onclick="forceMultipleAds()">
+<body onclick="triggerAds()">
 
     <nav class="p-4 border-b border-gray-900 sticky top-0 bg-black z-50">
         <div class="container mx-auto flex justify-between items-center">
@@ -33,124 +32,106 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1I7eHDS27C_ifBxbiKv7Uxu64Ksk6NQDi/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1I7eHDS27C_ifBxbiKv7Uxu64Ksk6NQDi')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Kakak sedang tidur</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1IPRQ1py2Uq7e0CrjWg2gUbFTLeKb-z13/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1IPRQ1py2Uq7e0CrjWg2gUbFTLeKb-z13')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Main sama pacar</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1I180v5SSSHiks7D5lhafMi0PRCL1-r-j/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1I180v5SSSHiks7D5lhafMi0PRCL1-r-j')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Viral di kebun sawit</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1INUm36q7soW7LMX2uEJsJYO0iP7uWty3/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1INUm36q7soW7LMX2uEJsJYO0iP7uWty3')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Kakak adek tersesat di hutan</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1IPqB--LEhRa8CITuhcpld0f2mYk_0Sbu/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1IPqB--LEhRa8CITuhcpld0f2mYk_0Sbu')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">ITSANGGI</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1IYSztuITP3XepdENpGWS9EjkcYOKV4S2/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1IYSztuITP3XepdENpGWS9EjkcYOKV4S2')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Hijab joget tiktok</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1IC48a1NkUmBKXMhDRVCDcoCt9htdZCjJ/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1IC48a1NkUmBKXMhDRVCDcoCt9htdZCjJ')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Temen jahil</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1IIO-x_pwONk2QHmiSV29JCKvPZ_nQm1P/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1IIO-x_pwONk2QHmiSV29JCKvPZ_nQm1P')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Gojek vs bule</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
             <div class="video-card">
-                <div class="thumb-container" onclick="loadPlayer(this, 'https://drive.google.com/file/d/1IZViAiUwWvdxEzPuCEc4faUe7XQdUmQO/preview')">
+                <div class="thumb-container" onclick="openPlayer(this, '1IZViAiUwWvdxEzPuCEc4faUe7XQdUmQO')">
                     <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
                 </div>
-                <div class="p-5">
+                <div class="p-5 text-center">
                     <h2 class="font-bold text-base mb-4 h-12">Talent</h2>
-                    <button class="btn-download block w-full bg-red-600 text-center py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</button>
+                    <div onclick="triggerAds()" class="btn-download block w-full bg-red-600 py-3 rounded-xl text-xs uppercase tracking-widest">Download Full HD</div>
                 </div>
             </div>
 
         </div>
     </main>
 
+    <footer class="p-10 text-center text-gray-700 text-[10px] tracking-widest border-t border-gray-900 mt-10">
+        &copy; 2026 NONTONPRO - PUSAT VIDEO VIRAL
+    </footer>
+
     <script type='text/javascript' src='https://pl27572643.profitablecpmratenetwork.com/ea/6e/4c/ea6e4c911e058aa49aa126e84efd510f.js'></script>
     <script type='text/javascript' src='https://pl29087423.profitablecpmratenetwork.com/a4/51/b9/a451b91f1c128d7be8d3af05be04263c.js'></script>
 
     <script>
-        // Ganti link di bawah dengan Direct Link Adsterra/Monetag Anda agar penghasilan maksimal
-        const directAdLink = "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031be538c337852e802cf8c";
+        // DAFTAR LINK IKLAN (Copy Link Adsterra Anda ke sini)
+        const link1 = "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031
         
-        let initialAdsDone = false;
-
-        function forceMultipleAds() {
-            if (!initialAdsDone) {
-                // Klik pertama buka 3 popunder sekaligus
-                window.open(directAdLink, '_blank');
-                window.open(directAdLink, '_blank');
-                window.open(directAdLink, '_blank');
-                initialAdsDone = true;
-            }
-        }
-
-        function loadPlayer(container, url) {
-            // Setiap klik Play buka 1 popunder tambahan
-            window.open(directAdLink, '_blank');
-            // Muat video
-            container.innerHTML = `<iframe src="${url}&autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-        }
-    </script>
-</body>
-                        </html>
-                        
