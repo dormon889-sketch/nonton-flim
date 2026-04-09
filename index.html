@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NontonPro - High Speed Streaming</title>
+    <title>NontonPro - Video Player</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; cursor: pointer; }
         .video-card { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
-        .thumb-box { 
-            position: relative; width: 100%; aspect-ratio: 16/9; 
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center;
+        .player-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
+        
+        /* Overlay Transparan untuk Menangkap Klik Pertama */
+        .click-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
-        .play-btn { 
+        .play-icon { 
             width: 60px; height: 60px; background: rgba(220, 38, 38, 0.9); 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            border: 2px solid #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid #fff;
         }
-        .play-btn svg { width: 30px; height: 30px; fill: #fff; margin-left: 4px; }
+        .play-icon svg { width: 30px; height: 30px; fill: #fff; margin-left: 4px; }
+
+        iframe { width: 100%; height: 100%; border: none; }
         .btn-dl { 
             background: #e11d48; text-align: center; padding: 12px; border-radius: 8px; 
             font-weight: 800; animation: pulse 2s infinite; display: block; margin-top: 10px;
         }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
-        iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-        .hidden { display: none; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
     </style>
 </head>
 <body onclick="forcePop()">
@@ -40,66 +41,60 @@
     <script type='text/javascript' src='https://pl27572643.profitablecpmratenetwork.com/ea/6e/4c/ea6e4c911e058aa49aa126e84efd510f.js'></script>
 
     <script>
-        // DAFTAR LINK IKLAN (Bisa ditambah jika kurang)
-        const adLinks = [
-            "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031be538c337852e802cf8c",
-            "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031be538c337852e802cf8c",
-            "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031be538c337852e802cf8c"
-        ];
-
+        const adLink = "https://www.effectivegatecpm.com/z6je137z10?key=b30ca5126031be538c337852e802cf8c";
+        
+        // Daftar Video Tanpa URL Gambar Manual
         const videos = [
-            { id: '1IZViAiUwWvdxEzPuCEc4faUe7XQdUmQO', title: 'Talent', thumb: 'https://i.ibb.co.com/p6D11Tb5/IMG-20260409-094536.jpg' },
-            { id: '1INUm36q7soW7LMX2uEJsJYO0iP7uWty3', title: 'Tersesat di hutan', thumb: 'https://i.ibb.co.com/MDj8Zfvk/Screenshot.jpg' },
-            { id: '1IPRQ1py2Uq7e0CrjWg2gUbFTLeKb-z13', title: 'Main sama pacar', thumb: 'https://i.ibb.co.com/JjTXwgVB/Screenshot.jpg' },
-            { id: '1I180v5SSSHiks7D5lhafMi0PRCL1-r-j', title: 'Bermain di kebun sawit', thumb: 'https://i.ibb.co.com/tpbk40N8/Screenshot.jpg' },
-            { id: '1I7eHDS27C_ifBxbiKv7Uxu64Ksk6NQDi', title: 'Kakak sedang tidur', thumb: 'https://i.ibb.co.com/1Y5k9pPp/Screenshot.jpg' },
-            { id: '1IPqB--LEhRa8CITuhcpld0f2mYk_0Sbu', title: 'ITSANGGI', thumb: 'https://i.ibb.co.com/fzFkwffx/Screenshot.jpg' },
-            { id: '1IYSztuITP3XepdENpGWS9EjkcYOKV4S2', title: 'Hijab joget', thumb: 'https://i.ibb.co.com/PsfrYKQL/Screenshot.jpg' },
-            { id: '1IC48a1NkUmBKXMhDRVCDcoCt9htdZCjJ', title: 'Temen jahil', thumb: 'https://i.ibb.co.com/HL8TFrQS/Screenshot.jpg' },
-            { id: '1IIO-x_pwONk2QHmiSV29JCKvPZ_nQm1P', title: 'Bule vs Gojek', thumb: 'https://i.ibb.co.com/G4DhJrfb/Screenshot.jpg' }
+            { id: '1IZViAiUwWvdxEzPuCEc4faUe7XQdUmQO', title: 'Talent' },
+            { id: '1INUm36q7soW7LMX2uEJsJYO0iP7uWty3', title: 'Tersesat di hutan' },
+            { id: '1IPRQ1py2Uq7e0CrjWg2gUbFTLeKb-z13', title: 'Main sama pacar' },
+            { id: '1I180v5SSSHiks7D5lhafMi0PRCL1-r-j', title: 'Bermain di kebun sawit' },
+            { id: '1I7eHDS27C_ifBxbiKv7Uxu64Ksk6NQDi', title: 'Kakak sedang tidur' },
+            { id: '1IPqB--LEhRa8CITuhcpld0f2mYk_0Sbu', title: 'ITSANGGI' },
+            { id: '1IYSztuITP3XepdENpGWS9EjkcYOKV4S2', title: 'Hijab joget' },
+            { id: '1IC48a1NkUmBKXMhDRVCDcoCt9htdZCjJ', title: 'Temen jahil' },
+            { id: '1IIO-x_pwONk2QHmiSV29JCKvPZ_nQm1P', title: 'Bule vs Gojek' }
         ];
 
         const grid = document.getElementById('video-grid');
         videos.forEach(vid => {
             grid.innerHTML += `
                 <div class="video-card">
-                    <div class="thumb-box" style="background-image: url('${vid.thumb}')" onclick="playLogic(this, '${vid.id}')">
-                        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                    <div class="player-container">
+                        <iframe src="https://drive.google.com/file/d/${vid.id}/preview"></iframe>
+                        
+                        <div class="click-overlay" onclick="handleInitialClick(this)">
+                            <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                        </div>
                     </div>
                     <div class="p-4">
                         <h2 class="font-bold mb-2 text-sm">${vid.title}</h2>
-                        <div onclick="tripleAd()" class="btn-dl text-xs">DOWNLOAD FULL HD</div>
+                        <div onclick="triplePop()" class="btn-dl text-xs">DOWNLOAD FULL HD</div>
                     </div>
                 </div>
             `;
         });
 
-        // FUNGSI IKLAN 3 TAB SEKALIGUS (BERJEDA 1 DETIK)
-        function tripleAd() {
-            window.open(adLinks[0], '_blank'); // Iklan 1
-            setTimeout(() => { window.open(adLinks[1], '_blank'); }, 1000); // Iklan 2
-            setTimeout(() => { window.open(adLinks[2], '_blank'); }, 2000); // Iklan 3
+        // 3 Iklan Sekaligus
+        function triplePop() {
+            window.open(adLink, '_blank');
+            setTimeout(() => { window.open(adLink, '_blank'); }, 1000);
+            setTimeout(() => { window.open(adLink, '_blank'); }, 2000);
         }
 
-        // IKLAN GLOBAL (Klik Background)
+        // Iklan Background
         function forcePop() {
             if(!window.isPopped) {
-                window.open(adLinks[0], '_blank');
+                window.open(adLink, '_blank');
                 window.isPopped = true;
-                setTimeout(() => { window.isPopped = false; }, 10000); // Jeda 10 detik biar tidak diblokir browser
+                setTimeout(() => { window.isPopped = false; }, 8000);
             }
         }
 
-        // LOGIKA PLAY: KLIK 1 (IKLAN), KLIK 2 (VIDEO DRIVE)
-        let clickCount = {};
-        function playLogic(container, videoId) {
-            if (!clickCount[videoId]) {
-                tripleAd(); // Klik Pertama: Muncul 3 Iklan
-                clickCount[videoId] = true;
-            } else {
-                // Klik Kedua: Muncul Video Google Drive Instan
-                container.innerHTML = `<iframe src="https://drive.google.com/file/d/${videoId}/preview" frameborder="0" allow="autoplay"></iframe>`;
-            }
+        // Logika Klik: Hapus Overlay & Munculkan Iklan
+        function handleInitialClick(overlay) {
+            triplePop(); // Munculkan 3 iklan
+            overlay.remove(); // Hapus penghalang agar video bisa diklik/diputar langsung
         }
     </script>
 </body>
