@@ -35,13 +35,13 @@
             <div class="w-8 h-8 bg-red-600 rounded-full shadow-[0_0_15px_#dc2626]"></div>
             <span class="text-xl font-black uppercase text-white tracking-tighter">Nonton<span class="text-red-600">Pro</span></span>
         </div>
-        <div class="text-[10px] font-bold text-green-500 animate-pulse">ULTRA SYSTEM ACTIVE</div>
+        <div class="text-[10px] font-bold text-green-500 animate-pulse">ULTRA MONETIZATION ACTIVE</div>
     </nav>
 
     <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="video-grid"></main>
 
     <script>
-        // ROTASI 4 LINK IKLAN (2 MONETAG, 2 ADSTERRA)
+        // ROTASI 4 LINK IKLAN MILIKMU (MONETAG & ADSTERRA)
         const allAdLinks = [
             "https://omg10.com/4/10824866",
             "https://omg10.com/4/9360747",
@@ -52,19 +52,19 @@
         let adIndex = 0;
         let isWaiting = false;
 
-        // MAPPING FIX: JUDUL (ATAS KE BAWAH) dipasangkan dengan ID (BAWAH KE ATAS)
+        // DATA BERURUTAN (TIDAK DIBALIK): JUDUL 1 = ID 1, DST.
         const doodVideos = [
-            { title: 'minta nyusu ke ayang', id: '3vlfwbye4rxi' },
-            { title: 'spek chindo', id: 'vrk7wo3kwah6' },
-            { title: 'CRT dalem', id: 'c5m5bcbdhdf4' },
-            { title: 'bulet banget', id: 'gdbtns2obtwm' },
-            { title: 'main di atas', id: 'mcvgfvp1l46c' },
+            { title: 'minta nyusu ke ayang', id: 'vurmomqty1a6' },
+            { title: 'spek chindo', id: 'i4uacwdd91ev' },
+            { title: 'CRT dalem', id: 'hfh9obusf70t' },
+            { title: 'bulet banget', id: '94l57380dwei' },
+            { title: 'main di atas', id: 'evz7qptnuln2' },
             { title: 'keluar asi', id: 's0s53txhao48' },
-            { title: 'ngedate sama pacar', id: 'evz7qptnuln2' },
-            { title: 'enak bener spongnya', id: '94l57380dwei' },
-            { title: 'bocil smp vc sama cowoknya', id: 'hfh9obusf70t' },
-            { title: 'di dalam mobil', id: 'i4uacwdd91ev' },
-            { title: 'Main sama pacar di kebun sawit', id: 'vurmomqty1a6' }
+            { title: 'ngedate sama pacar', id: 'mcvgfvp1l46c' },
+            { title: 'enak bener spongnya', id: 'gdbtns2obtwm' },
+            { title: 'bocil smp vc sama cowoknya', id: 'c5m5bcbdhdf4' },
+            { title: 'di dalam mobil', id: 'vrk7wo3kwah6' },
+            { title: 'Main sama pacar di kebun sawit', id: '3vlfwbye4rxi' }
         ];
 
         const grid = document.getElementById('video-grid');
@@ -98,7 +98,7 @@
             `;
         });
 
-        // FUNGSI TRIPLE STRIKE (BUKA 3 TAB IKLAN BERBEDA)
+        // FUNGSI TRIPLE STRIKE (BUKA 3 TAB IKLAN SEKALIGUS)
         function executeTripleStrike() {
             if (isWaiting) return;
 
@@ -113,7 +113,7 @@
             setTimeout(() => {
                 isWaiting = false;
                 document.getElementById('global-ad-layer').style.display = 'block';
-            }, 5000);
+            }, 5000); // Jeda 5 detik
         }
     </script>
 </body>
