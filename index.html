@@ -10,7 +10,7 @@
         .video-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
         .player-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
         
-        /* JARING IKLAN POPUNDER (MENCAKUP SELURUH LAYAR) */
+        /* JARING IKLAN POPUNDER GLOBAL */
         #global-ad-layer { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 9999; cursor: pointer; display: block;
@@ -41,7 +41,7 @@
     <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="video-grid"></main>
 
     <script>
-        // ROTASI 4 LINK IKLAN BARU (2 ADSTERRA, 2 MONETAG)
+        // ROTASI 4 LINK IKLAN (2 MONETAG, 2 ADSTERRA)
         const allAdLinks = [
             "https://omg10.com/4/10824866",
             "https://omg10.com/4/9360747",
@@ -52,19 +52,19 @@
         let adIndex = 0;
         let isWaiting = false;
 
-        // DATA FIX: JUDUL DARI SCREENSHOT (ATAS-BAWAH) & ID (BAWAH-ATAS)
+        // MAPPING FIX: JUDUL (ATAS KE BAWAH) dipasangkan dengan ID (BAWAH KE ATAS)
         const doodVideos = [
-            { title: 'minta nyusu ke ayang', id: 'vurmomqty1a6' },
-            { title: 'spek chindo', id: 'i4uacwdd91ev' },
-            { title: 'CRT dalem', id: 'hfh9obusf70t' },
-            { title: 'bulet banget', id: '94l57380dwei' },
-            { title: 'main di atas', id: 'evz7qptnuln2' },
+            { title: 'minta nyusu ke ayang', id: '3vlfwbye4rxi' },
+            { title: 'spek chindo', id: 'vrk7wo3kwah6' },
+            { title: 'CRT dalem', id: 'c5m5bcbdhdf4' },
+            { title: 'bulet banget', id: 'gdbtns2obtwm' },
+            { title: 'main di atas', id: 'mcvgfvp1l46c' },
             { title: 'keluar asi', id: 's0s53txhao48' },
-            { title: 'ngedate sama pacar', id: 'mcvgfvp1l46c' },
-            { title: 'enak bener spongnya', id: 'gdbtns2obtwm' },
-            { title: 'bocil smp vc sama cowoknya', id: 'c5m5bcbdhdf4' },
-            { title: 'di dalam mobil', id: 'vrk7wo3kwah6' },
-            { title: 'Main sama pacar di kebun sawit', id: '3vlfwbye4rxi' }
+            { title: 'ngedate sama pacar', id: 'evz7qptnuln2' },
+            { title: 'enak bener spongnya', id: '94l57380dwei' },
+            { title: 'bocil smp vc sama cowoknya', id: 'hfh9obusf70t' },
+            { title: 'di dalam mobil', id: 'i4uacwdd91ev' },
+            { title: 'Main sama pacar di kebun sawit', id: 'vurmomqty1a6' }
         ];
 
         const grid = document.getElementById('video-grid');
