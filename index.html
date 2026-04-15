@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NontonPro - High Quality Streaming</title>
+    <title>NontonPro - Streaming Koleksi Viral</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .video-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+        .video-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; overflow: hidden; margin-bottom: 30px; }
         .player-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
         
-        /* JARING IKLAN RAKSASA */
+        /* JARING POPUNDER GLOBAL - MENUTUPI SELURUH LAYAR */
         #global-ad-layer { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 9999; cursor: pointer; display: block;
@@ -19,47 +19,42 @@
         iframe { width: 100%; height: 100%; border: none; }
         .btn-dl { 
             background: linear-gradient(90deg, #e11d48, #be123c); text-align: center; 
-            padding: 10px; border-radius: 8px; font-weight: 800; cursor: pointer;
+            padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; margin-top: 10px;
         }
 
-        #status-bar { transition: 0.5s; font-size: 10px; font-weight: bold; }
-        .cooldown { color: #facc15; }
-        .ready { color: #22c55e; }
+        /* Banner Placeholder (Akan diisi iklan Adsterra) */
+        .ad-banner { width: 100%; height: 90px; background: #111; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #444; overflow: hidden; }
     </style>
     
     <script src="https://pl27571947.profitablecpmratenetwork.com/59/86/ee/5986ee49c4f8f3d6318fd610625f4391.js"></script>
 </head>
 <body id="app-body">
 
-    <div id="global-ad-layer" onclick="executeTripleStrike()"></div>
+    <div id="global-ad-layer" onclick="executeAdvancedPopunder()"></div>
 
     <nav class="p-4 border-b border-gray-800 bg-black sticky top-0 z-[10000] flex justify-between items-center">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-red-600 rounded-full shadow-[0_0_10px_#dc2626]"></div>
-            <span class="text-xl font-black uppercase text-white">Nonton<span class="text-red-600">Pro</span></span>
+            <div class="w-8 h-8 bg-red-600 rounded-full"></div>
+            <span class="text-xl font-black uppercase text-white tracking-tighter">Nonton<span class="text-red-600">Pro</span></span>
         </div>
-        <div id="status-bar" class="ready">SYSTEM OPTIMIZED</div>
+        <div class="text-[10px] font-bold text-green-500">ULTRA MONETIZATION ACTIVE</div>
     </nav>
 
     <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="video-grid"></main>
 
     <script>
-        // LINK ROTATION ENGINE (MAKSIMALKAN CPM)
-        const monetagLinks = [
+        // DAFTAR LINK IKLAN UNTUK POPUNDER (ROTASI)
+        const allAdLinks = [
             "https://omg10.com/4/10824866",
-            "https://omg10.com/4/9360747"
-        ];
-        const adsterraLinks = [
+            "https://omg10.com/4/9360747",
             "https://www.profitablecpmratenetwork.com/p1d0jbkb?key=536360465acc1e191756092b8cb28860",
             "https://www.profitablecpmratenetwork.com/k4hr7acbf?key=90c5c18ab7b33371fe23eb46febb520d"
         ];
         
-        let indexM = 0;
-        let indexA = 0;
+        let adIndex = 0;
         let isWaiting = false;
-        const JEDA_WAKTU = 5000; 
 
-        // DAFTAR VIDEO SESUAI SCREENSHOT & ID DOODSTREAM
+        // DAFTAR VIDEO SESUAI JUDUL ASLI SCREENSHOT (DARI ATAS KE BAWAH)
         const doodVideos = [
             { title: 'minta nyusu ke ayang', id: 'vurmomqty1a6' },
             { title: 'spek chindo', id: 'i4uacwdd91ev' },
@@ -78,51 +73,53 @@
         doodVideos.forEach(vid => {
             grid.innerHTML += `
                 <div class="video-card">
+                    <div class="ad-banner">
+                        <script type="text/javascript">
+                            atOptions = { 'key' : 'ea6e4c911e058aa49aa126e84efd510f', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+                            document.write('<scr' + 'ipt type="text/javascript" src="//www.profitablecpmratenetwork.com/ea6e4c911e058aa49aa126e84efd510f/invoke.js"></scr' + 'ipt>');
+                        <\/script>
+                    </div>
+
                     <div class="player-container">
                         <iframe src="https://dood.li/e/${vid.id}" allowfullscreen="true"></iframe>
                     </div>
-                    <div class="p-4">
+
+                    <div class="p-4 text-center">
                         <h2 class="font-bold text-sm mb-3 text-gray-200 uppercase">${vid.title}</h2>
-                        <div class="btn-dl text-xs">DOWNLOAD FULL HD</div>
+                        
+                        <div class="ad-banner mb-3">
+                           <script type="text/javascript">
+                                atOptions = { 'key' : '5986ee49c4f8f3d6318fd610625f4391', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+                                document.write('<scr' + 'ipt type="text/javascript" src="//www.profitablecpmratenetwork.com/5986ee49c4f8f3d6318fd610625f4391/invoke.js"></scr' + 'ipt>');
+                            <\/script>
+                        </div>
+                        
+                        <div class="btn-dl text-xs">DOWNLOAD VIDEO HD</div>
                     </div>
                 </div>
             `;
         });
 
-        // FUNGSI ROTASI & TRIPLE STRIKE
-        function executeTripleStrike() {
+        // FUNGSI POPUNDER MAKSIMAL (MENGAMBIL ALIH SEMUA KLIK)
+        function executeAdvancedPopunder() {
             if (isWaiting) return;
 
-            // Memilih link secara bergantian
-            const linkM1 = monetagLinks[indexM];
-            const linkM2 = monetagLinks[(indexM + 1) % monetagLinks.length];
-            const linkA = adsterraLinks[indexA];
+            // Membuka 3 Popunder secara beruntun dari daftar rotasi
+            for (let i = 0; i < 3; i++) {
+                const targetLink = allAdLinks[adIndex];
+                window.open(targetLink, '_blank');
+                adIndex = (adIndex + 1) % allAdLinks.length;
+            }
 
-            // Buka 3 Tap sekaligus
-            window.open(linkM1, '_blank'); 
-            setTimeout(() => { window.open(linkM2, '_blank'); }, 200); 
-            setTimeout(() => { window.open(linkA, '_blank'); }, 400); 
-
-            // Update index untuk klik berikutnya
-            indexM = (indexM + 1) % monetagLinks.length;
-            indexA = (indexA + 1) % adsterraLinks.length;
-
-            startCooldown();
-        }
-
-        function startCooldown() {
+            // Sistem Jeda 4 Detik agar User bisa memutar video setelah iklan terbuka
             isWaiting = true;
             const layer = document.getElementById('global-ad-layer');
-            const status = document.getElementById('status-bar');
-            layer.style.display = 'none'; 
-            status.innerText = "COOLING DOWN...";
-            status.className = "cooldown";
+            layer.style.display = 'none';
+
             setTimeout(() => {
                 isWaiting = false;
-                layer.style.display = 'block'; 
-                status.innerText = "SYSTEM READY";
-                status.className = "ready";
-            }, JEDA_WAKTU);
+                layer.style.display = 'block';
+            }, 4000);
         }
     </script>
 </body>
