@@ -7,10 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .video-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; overflow: hidden; margin-bottom: 30px; }
+        .video-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
         .player-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
         
-        /* JARING POPUNDER GLOBAL */
+        /* JARING IKLAN POPUNDER (FULL SCREEN) */
         #global-ad-layer { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 9999; cursor: pointer; display: block;
@@ -19,29 +19,29 @@
         iframe { width: 100%; height: 100%; border: none; }
         .btn-dl { 
             background: linear-gradient(90deg, #e11d48, #be123c); text-align: center; 
-            padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; margin-top: 10px;
+            padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; margin-top: 15px;
         }
-        .ad-banner { width: 100%; min-height: 50px; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .ad-banner-box { width: 100%; min-height: 60px; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 10px 0; }
     </style>
     
     <script src="https://pl27571947.profitablecpmratenetwork.com/59/86/ee/5986ee49c4f8f3d6318fd610625f4391.js"></script>
 </head>
 <body id="app-body">
 
-    <div id="global-ad-layer" onclick="executeAdvancedPopunder()"></div>
+    <div id="global-ad-layer" onclick="executeTripleStrike()"></div>
 
     <nav class="p-4 border-b border-gray-800 bg-black sticky top-0 z-[10000] flex justify-between items-center">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-red-600 rounded-full"></div>
+            <div class="w-8 h-8 bg-red-600 rounded-full shadow-[0_0_15px_#dc2626]"></div>
             <span class="text-xl font-black uppercase text-white tracking-tighter">Nonton<span class="text-red-600">Pro</span></span>
         </div>
-        <div class="text-[10px] font-bold text-green-500">MAX MONETIZATION ON</div>
+        <div class="text-[10px] font-bold text-green-500 animate-pulse">MONETIZATION: MAX</div>
     </nav>
 
-    <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="video-grid"></main>
+    <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="video-grid"></main>
 
     <script>
-        // ROTASI 4 LINK IKLAN KAMU
+        // DAFTAR 4 LINK IKLAN UNTUK ROTASI (2 Monetag, 2 Adsterra)
         const allAdLinks = [
             "https://omg10.com/4/10824866",
             "https://omg10.com/4/9360747",
@@ -52,7 +52,8 @@
         let adIndex = 0;
         let isWaiting = false;
 
-        // DATA FIX: JUDUL SCREENSHOT (ATAS-BAWAH) | ID (BAWAH-ATAS)
+        // JUDUL ASLI DARI SCREENSHOT (URUTAN ATAS-BAWAH) 
+        // ID DOODSTREAM (URUTAN BAWAH-ATAS)
         const doodVideos = [
             { title: 'minta nyusu ke ayang', id: 'vurmomqty1a6' },
             { title: 'spek chindo', id: 'i4uacwdd91ev' },
@@ -71,7 +72,7 @@
         doodVideos.forEach(vid => {
             grid.innerHTML += `
                 <div class="video-card">
-                    <div class="ad-banner">
+                    <div class="ad-banner-box">
                         <script type="text/javascript">
                             atOptions = { 'key' : 'ea6e4c911e058aa49aa126e84efd510f', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
                         <\/script>
@@ -82,38 +83,40 @@
                         <iframe src="https://dood.li/e/${vid.id}" allowfullscreen="true"></iframe>
                     </div>
 
-                    <div class="p-4 text-center">
-                        <h2 class="font-bold text-sm mb-3 text-gray-200 uppercase">${vid.title}</h2>
+                    <div class="p-5 text-center">
+                        <h2 class="font-black text-sm mb-4 text-gray-100 uppercase tracking-wide">${vid.title}</h2>
                         
-                        <div class="ad-banner mb-3">
+                        <div class="ad-banner-box">
                            <script type="text/javascript">
                                 atOptions = { 'key' : '5986ee49c4f8f3d6318fd610625f4391', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
                             <\/script>
                             <script type="text/javascript" src="//www.profitablecpmratenetwork.com/5986ee49c4f8f3d6318fd610625f4391/invoke.js"><\/script>
                         </div>
                         
-                        <div class="btn-dl text-xs">DOWNLOAD VIDEO HD</div>
+                        <div class="btn-dl text-xs tracking-widest">DOWNLOAD VIDEO HD</div>
                     </div>
                 </div>
             `;
         });
 
-        // FUNGSI POPUNDER (Picu 3 Tab Iklan Bergantian)
-        function executeAdvancedPopunder() {
+        // FUNGSI TRIPLE STRIKE: KLIK MANAPUN BUKA 3 TAB IKLAN BERBEDA
+        function executeTripleStrike() {
             if (isWaiting) return;
 
+            // Membuka 3 tab iklan dari daftar rotasi secara otomatis
             for (let i = 0; i < 3; i++) {
                 window.open(allAdLinks[adIndex], '_blank');
                 adIndex = (adIndex + 1) % allAdLinks.length;
             }
 
+            // Pasang jeda 5 detik agar user bisa klik tombol play video
             isWaiting = true;
             document.getElementById('global-ad-layer').style.display = 'none';
 
             setTimeout(() => {
                 isWaiting = false;
                 document.getElementById('global-ad-layer').style.display = 'block';
-            }, 5000); // Jeda 5 detik
+            }, 5000);
         }
     </script>
 </body>
