@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NontonPro - Streaming Koleksi Viral</title>
+    <title>NontonPro - Koleksi Viral Terupdate</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .video-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; overflow: hidden; margin-bottom: 30px; }
         .player-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
         
-        /* JARING POPUNDER GLOBAL - MENUTUPI SELURUH LAYAR */
+        /* JARING POPUNDER GLOBAL */
         #global-ad-layer { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             z-index: 9999; cursor: pointer; display: block;
@@ -21,9 +21,7 @@
             background: linear-gradient(90deg, #e11d48, #be123c); text-align: center; 
             padding: 12px; border-radius: 8px; font-weight: 800; cursor: pointer; margin-top: 10px;
         }
-
-        /* Banner Placeholder (Akan diisi iklan Adsterra) */
-        .ad-banner { width: 100%; height: 90px; background: #111; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #444; overflow: hidden; }
+        .ad-banner { width: 100%; min-height: 50px; background: #111; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     </style>
     
     <script src="https://pl27571947.profitablecpmratenetwork.com/59/86/ee/5986ee49c4f8f3d6318fd610625f4391.js"></script>
@@ -37,13 +35,13 @@
             <div class="w-8 h-8 bg-red-600 rounded-full"></div>
             <span class="text-xl font-black uppercase text-white tracking-tighter">Nonton<span class="text-red-600">Pro</span></span>
         </div>
-        <div class="text-[10px] font-bold text-green-500">ULTRA MONETIZATION ACTIVE</div>
+        <div class="text-[10px] font-bold text-green-500">MAX MONETIZATION ON</div>
     </nav>
 
     <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="video-grid"></main>
 
     <script>
-        // DAFTAR LINK IKLAN UNTUK POPUNDER (ROTASI)
+        // ROTASI 4 LINK IKLAN KAMU
         const allAdLinks = [
             "https://omg10.com/4/10824866",
             "https://omg10.com/4/9360747",
@@ -54,7 +52,7 @@
         let adIndex = 0;
         let isWaiting = false;
 
-        // DAFTAR VIDEO SESUAI JUDUL ASLI SCREENSHOT (DARI ATAS KE BAWAH)
+        // DATA FIX: JUDUL SCREENSHOT (ATAS-BAWAH) | ID (BAWAH-ATAS)
         const doodVideos = [
             { title: 'minta nyusu ke ayang', id: 'vurmomqty1a6' },
             { title: 'spek chindo', id: 'i4uacwdd91ev' },
@@ -76,8 +74,8 @@
                     <div class="ad-banner">
                         <script type="text/javascript">
                             atOptions = { 'key' : 'ea6e4c911e058aa49aa126e84efd510f', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-                            document.write('<scr' + 'ipt type="text/javascript" src="//www.profitablecpmratenetwork.com/ea6e4c911e058aa49aa126e84efd510f/invoke.js"></scr' + 'ipt>');
                         <\/script>
+                        <script type="text/javascript" src="//www.profitablecpmratenetwork.com/ea6e4c911e058aa49aa126e84efd510f/invoke.js"><\/script>
                     </div>
 
                     <div class="player-container">
@@ -90,8 +88,8 @@
                         <div class="ad-banner mb-3">
                            <script type="text/javascript">
                                 atOptions = { 'key' : '5986ee49c4f8f3d6318fd610625f4391', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
-                                document.write('<scr' + 'ipt type="text/javascript" src="//www.profitablecpmratenetwork.com/5986ee49c4f8f3d6318fd610625f4391/invoke.js"></scr' + 'ipt>');
                             <\/script>
+                            <script type="text/javascript" src="//www.profitablecpmratenetwork.com/5986ee49c4f8f3d6318fd610625f4391/invoke.js"><\/script>
                         </div>
                         
                         <div class="btn-dl text-xs">DOWNLOAD VIDEO HD</div>
@@ -100,26 +98,22 @@
             `;
         });
 
-        // FUNGSI POPUNDER MAKSIMAL (MENGAMBIL ALIH SEMUA KLIK)
+        // FUNGSI POPUNDER (Picu 3 Tab Iklan Bergantian)
         function executeAdvancedPopunder() {
             if (isWaiting) return;
 
-            // Membuka 3 Popunder secara beruntun dari daftar rotasi
             for (let i = 0; i < 3; i++) {
-                const targetLink = allAdLinks[adIndex];
-                window.open(targetLink, '_blank');
+                window.open(allAdLinks[adIndex], '_blank');
                 adIndex = (adIndex + 1) % allAdLinks.length;
             }
 
-            // Sistem Jeda 4 Detik agar User bisa memutar video setelah iklan terbuka
             isWaiting = true;
-            const layer = document.getElementById('global-ad-layer');
-            layer.style.display = 'none';
+            document.getElementById('global-ad-layer').style.display = 'none';
 
             setTimeout(() => {
                 isWaiting = false;
-                layer.style.display = 'block';
-            }, 4000);
+                document.getElementById('global-ad-layer').style.display = 'block';
+            }, 5000); // Jeda 5 detik
         }
     </script>
 </body>
