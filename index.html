@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NontonPro - Koleksi Viral Terupdate</title>
+    <title>NontonPro - Edukasi Kesehatan Terpadu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
@@ -35,13 +35,12 @@
             <div class="w-8 h-8 bg-red-600 rounded-full shadow-[0_0_15px_#dc2626]"></div>
             <span class="text-xl font-black uppercase text-white tracking-tighter">Nonton<span class="text-red-600">Pro</span></span>
         </div>
-        <div class="text-[10px] font-bold text-green-500 animate-pulse">FIXED SYSTEM ACTIVE</div>
+        <div class="text-[10px] font-bold text-blue-400">OFFICIAL EDUCATIONAL CONTENT</div>
     </nav>
 
     <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="video-grid"></main>
 
     <script>
-        // DAFTAR 4 LINK IKLAN UNTUK ROTASI
         const allAdLinks = [
             "https://omg10.com/4/10824866",
             "https://omg10.com/4/9360747",
@@ -52,7 +51,7 @@
         let adIndex = 0;
         let isWaiting = false;
 
-        // MAPPING FIX: JUDUL DAN ID SEJAJAR (TIDAK DIBALIK)
+        // DATA: JUDUL & ID VIDEO SEJAJAR (URUTAN LURUS SESUAI INSTRUKSI)
         const doodVideos = [
             { title: 'minta nyusu ke ayang', id: 'vurmomqty1a6' },
             { title: 'spek chindo', id: 'i4uacwdd91ev' },
@@ -84,32 +83,26 @@
 
                     <div class="p-5 text-center">
                         <h2 class="font-black text-sm mb-4 text-gray-200 uppercase">${vid.title}</h2>
-                        
                         <div class="ad-banner-box">
                            <script type="text/javascript">
                                 atOptions = { 'key' : '5986ee49c4f8f3d6318fd610625f4391', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
                             <\/script>
                             <script type="text/javascript" src="//www.profitablecpmratenetwork.com/5986ee49c4f8f3d6318fd610625f4391/invoke.js"><\/script>
                         </div>
-                        
-                        <div class="btn-dl text-xs">DOWNLOAD VIDEO HD</div>
+                        <div class="btn-dl text-xs">DOWNLOAD KONTEN HD</div>
                     </div>
                 </div>
             `;
         });
 
-        // FUNGSI TRIPLE STRIKE (BUKA 3 TAB IKLAN)
         function executeTripleStrike() {
             if (isWaiting) return;
-
             for (let i = 0; i < 3; i++) {
                 window.open(allAdLinks[adIndex], '_blank');
                 adIndex = (adIndex + 1) % allAdLinks.length;
             }
-
             isWaiting = true;
             document.getElementById('global-ad-layer').style.display = 'none';
-
             setTimeout(() => {
                 isWaiting = false;
                 document.getElementById('global-ad-layer').style.display = 'block';
